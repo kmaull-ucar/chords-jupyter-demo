@@ -5,4 +5,3 @@ demonstration of using [Python](https://python.org) to obtain data from
 The essential files are in [demos/](./demos) and the critical notebook is:
 
 * [demos/chords-get-data-python.ipynb](./demos/chords-get-data-python.ipynb)
-

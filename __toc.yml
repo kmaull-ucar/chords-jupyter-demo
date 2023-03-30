@@ -1,0 +1,19 @@
+- file: intro
+- file: content
+  sections:
+    - file: chords
+    - file: demos/chords-get-data-restman
+    - file: python-jupyter
+    - file: demos/chords-get-data-python
+    - file: wrapup
+
+
+
+# 5 intro
+# 10 chords and wx data
+# 10 getting in / out of chords using restman
+# 5 q/a
+# 10 intro python / jupyter / hello world
+# 10 use requests to get data in / out 
+# 5 q/a
+# 5 outro

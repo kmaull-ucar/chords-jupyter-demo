@@ -1,0 +1,11 @@
+format: jb-article
+root: intro
+sections:
+- file: preliminaries
+- file: chords
+  sections:
+  - file: demos/chords-get-data-restman
+- file: python-jupyter
+  sections:
+  - file: demos/chords-get-data-python
+- file: wrapup

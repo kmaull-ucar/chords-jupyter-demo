@@ -10,5 +10,5 @@ Follow these steps to get what you need:
 2. install [Python 3](https://python.org) 
     1. install [Pandas]()
     2. install [matplotlib](https://matplotlib.org)
-    3. (optional) install [Jupyter]()
+    3. (optional) install [Jupyter](https://jupyter.org)
 3. alternatively, install [Ananconda](https://anaconda.com) for your platform which will cover the installation of Pandas, matplotlib and Jupyter in one swoop

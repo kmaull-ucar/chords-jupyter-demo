@@ -268,12 +268,46 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-notebook">
+   Create a notebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation-sketch">
+   Implementation sketch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notebook-implementation">
+   Notebook implementation
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -285,6 +319,29 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#create-a-notebook">
+   Create a notebook
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#implementation-sketch">
+   Implementation sketch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#notebook-implementation">
+   Notebook implementation
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -294,6 +351,39 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="using-python-for-chords">
 <h1>Using Python for CHORDS<a class="headerlink" href="#using-python-for-chords" title="Permalink to this headline">#</a></h1>
+<p>Now that we can see the data manually, let’s
+do it programmatically.</p>
+<p>We will use Python to do this and in our demo, we will
+do it with a Jupyter notebook, though you can
+do it in a Python interpreter and just save
+the output file on the filesystem since it will
+not otherwise be visible.</p>
+<p>Jupyter is an excellent platform and
+we will find it to be a fantastic tool
+for the kinds of data analysis <em>and learning</em>
+we would like to do with Python.  Give it a try
+you will soon find it to be easy to use
+and may help lower the barriers to learning
+Python.</p>
+<section id="create-a-notebook">
+<h2>Create a notebook<a class="headerlink" href="#create-a-notebook" title="Permalink to this headline">#</a></h2>
+<p>Once we load Jupyter, we can create a notebook
+and begin the process of implementation.</p>
+</section>
+<section id="implementation-sketch">
+<h2>Implementation sketch<a class="headerlink" href="#implementation-sketch" title="Permalink to this headline">#</a></h2>
+<p>In our implementation, we want to programmatically
+do what we did manually:</p>
+<ol class="simple">
+<li><p>get data from CHORDS API</p></li>
+<li><p>store it in a file</p></li>
+<li><p>load it for analysis and visualization</p></li>
+</ol>
+</section>
+<section id="notebook-implementation">
+<h2>Notebook implementation<a class="headerlink" href="#notebook-implementation" title="Permalink to this headline">#</a></h2>
+<p>The next page contains the completed notebook.</p>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>

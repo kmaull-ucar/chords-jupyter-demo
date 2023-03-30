@@ -14,10 +14,10 @@ come from weather stations.
 
 CHORDS operates on a simple workflow:  
 
-1. given a data **producer** (sensor, instrument, machine, etc.), 
-2. the data is put into CHORDS over the Internet, 
-3. it can then be visualized and 
-4. retrieved and archived, analyzed or sent to other devices (or whatever else you'd like to do with it).
+1. given a data **data producer** (sensor, instrument, machine, etc.), 
+2. the data is **put into CHORDS** over the Internet, 
+3. the data  can then be **visualized** and then
+4. the data can be **retrieved, archived, analyzed** or sent to other devices (or whatever else you'd like to do with it).
 
 This image shows the basic operation of CHORDS:
 

@@ -478,6 +478,7 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+<p>The <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.head.html"><code class="docutils literal notranslate"><span class="pre">head()</span></code> function</a>  returns the top 5 rows of the DataFrame</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -603,6 +604,7 @@ title="Print to PDF"
 </table>
 </div></div></div>
 </div>
+<p>To take advantage of Pandas’ ability to work with <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/user_guide/timeseries.html">time series data</a>, we will set the index of our date to the <code class="docutils literal notranslate"><span class="pre">Time</span></code> column, which will greatly improve our ability to plot, select and manipulate the data based on times/dates.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
@@ -744,7 +746,8 @@ title="Print to PDF"
 </table>
 </div></div></div>
 </div>
-<p>As we can see there are a lot of empty values (NaN).  And a variety of data points.  We are only interested in the non-empty</p>
+<p>As we can see there are a lot of empty values (<code class="docutils literal notranslate"><span class="pre">NaN</span></code>).  And a variety of data points we do not need – we are only interested in the non-empty data and for the sake of this notebook the <code class="docutils literal notranslate"><span class="pre">HTU21D_T</span></code> column which includes temperature data in Celsius.</p>
+<p>We’ll select just that column by it’s name and also drop any empty values as they are not important to this analysis.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;HTU21D_T&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
@@ -776,11 +779,17 @@ Name: HTU21D_T, Length: 14233, dtype: float64
 </div>
 </div>
 </div>
-<p>You will notice all the temperature data is in C.  We will create a little function to convert it to F like this:</p>
+<p>You will notice all the temperature data is in C.  We will create a little function to convert it to F.</p>
+<p>Remember the formula to make this conversion:</p>
+<div class="math notranslate nohighlight">
+\[
+F =  \frac{9}{5} \times C  + 32
+\]</div>
+<p>like this:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_F</span><span class="p">(</span><span class="n">celsius</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span><span class="o">/</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
+    <span class="k">return</span> <span class="mi">9</span><span class="o">/</span><span class="mi">5</span> <span class="o">*</span> <span class="n">celsius</span> <span class="o">+</span> <span class="mi">32</span>
 </pre></div>
 </div>
 </div>
@@ -798,7 +807,7 @@ Name: HTU21D_T, Length: 14233, dtype: float64
 </div>
 </div>
 </div>
-<p>Now we will update the data …</p>
+<p>Now we will update the data … the <a class="reference external" href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.apply.html"><code class="docutils literal notranslate"><span class="pre">apply()</span></code> function</a> will take our function and apply it to the entire column (or DataFrame, if we want).  This makes is very simple to get the data in the shape we would like it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">to_F</span><span class="p">)</span> <span class="c1"># convert data to F</span>
@@ -817,7 +826,7 @@ Name: HTU21D_T, Length: 14233, dtype: float64
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: title={&#39;center&#39;: &#39;NCAR Testbed 2\nMar-20 to Mar-30 temperatures (F)&#39;}, xlabel=&#39;Time&#39;&gt;
 </pre></div>
 </div>
-<img alt="../_images/chords-get-data-python_23_1.png" src="../_images/chords-get-data-python_23_1.png" />
+<img alt="../_images/chords-get-data-python_25_1.png" src="../_images/chords-get-data-python_25_1.png" />
 </div>
 </div>
 <section id="what-is-the-average-temperature">
@@ -844,13 +853,13 @@ Name: HTU21D_T, Length: 14233, dtype: float64
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(264.02000000000004, -427.0)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(264.02, -427.0)
 </pre></div>
 </div>
 </div>
 </div>
-<p>That’s weird?  Looks like the sensor went crazy one day!</p>
-<p>Now you can study the Pandas documentation to learn how to eliminate those outliers!</p>
+<p>That’s weird?  Looks like the sensor <strong>went crazy one day</strong>!</p>
+<p>Now you can study the Pandas documentation to learn how to clean the data and eliminate those outliers!</p>
 <p><span class="math notranslate nohighlight">\(\Xi\)</span></p>
 </section>
 </section>

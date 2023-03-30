@@ -1,3 +1,5 @@
 _build/**
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
+demos/api-key.txt
+demos/sample_data.csv

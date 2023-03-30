@@ -268,12 +268,36 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-chords-works">
+   How CHORDS works
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -285,6 +309,19 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#how-chords-works">
+   How CHORDS works
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -294,6 +331,31 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="the-chords-platform-for-data">
 <h1>The CHORDS platform for data<a class="headerlink" href="#the-chords-platform-for-data" title="Permalink to this headline">#</a></h1>
+<p><a class="reference external" href="https://chordsrt.com">CHORDS</a> is a free and open source data platform for
+storing all types of dat onto a cloud platform (your own or a commercial platform like AWS, Azure, etc.), but it is especially well
+suited for atmospheric data of the type that would
+come from weather stations.</p>
+<p><a class="reference external" href="https://www.chordsrt.com"><img alt="" src="_images/chords_homepage.png" /></a></p>
+<section id="how-chords-works">
+<h2>How CHORDS works<a class="headerlink" href="#how-chords-works" title="Permalink to this headline">#</a></h2>
+<p>CHORDS operates on a simple workflow:</p>
+<ol class="simple">
+<li><p>given a data <strong>producer</strong> (sensor, instrument, machine, etc.),</p></li>
+<li><p>the data is put into CHORDS over the Internet,</p></li>
+<li><p>it can then be visualized and</p></li>
+<li><p>retrieved and archived, analyzed or sent to other devices (or whatever else you’d like to do with it).</p></li>
+</ol>
+<p>This image shows the basic operation of CHORDS:</p>
+<p><a class="reference external" href="https://earthcubeprojects-chords.github.io/chords-docs/whatis/"><img alt="" src="https://earthcubeprojects-chords.github.io/chords-docs/assets/images/overview.png" /></a></p>
+<p><a class="reference external" href="https://www.chordsrt.com">Learn more about the CHORDS project.</a></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><strong>Citing the CHORDS project should be done with the folloing citation:</strong></p>
+<blockquote>
+<div><p>Michael D. Daniels, Branko Kerkez, V. Chandrasekar, Sara Graves, D. Sarah Stamps, Charles Martin, Aaron Botnick, Michael Dye, Ryan Gooch, Josh Jones, Ken Keiser, Matthew Bartos, Thaovy Nguyen, Robyn Collins, Sophia Chen, Terrie Yang, Abbi Devins-Suresh (2016). Cloud-Hosted Real-time Data Services for the Geosciences (CHORDS) software (Version 1.0.1). UCAR/NCAR - EarthCube. <a class="reference external" href="https://doi.org/10.5065/d6v1236q">https://doi.org/10.5065/d6v1236q</a></p>
+</div></blockquote>
+</div>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -346,7 +408,7 @@ title="Print to PDF"
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By Keith Maull, Agbeli Ameko, Mike Daniels & Mike Dye<br/>
+    By Keith Maull, Agbeli Ameko, Mike Daniels & Mike Dye; Logo image <a href="https://www.freepik.com/free-vector/infinity-colorful-logo-gradient_30697739.htm#page=3&query=logo%20png%20mobius&position=32&from_view=search&track=ais#position=32&page=3&query=logo%20png%20mobius">by logturnal on Freepik</a><br/>
   
       &copy; Copyright 2023.<br/>
 </p>

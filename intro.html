@@ -267,12 +267,41 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#required-tools">
+   Required tools
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -284,6 +313,24 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#required-tools">
+   Required tools
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -293,6 +340,34 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h1>
+<p>This tutorial will cover basic use of the <span class="xref myst">CHORDS portal</span> platform data from within a Jupyter Notebook.</p>
+<p>The basic goals are:</p>
+<ul class="simple">
+<li><p>understand what <a class="reference external" href="https://chordsrt.com">CHORDS</a> is</p></li>
+<li><p>understand how to use CHORDS for basic HTTP data retrieval</p></li>
+<li><p>understand how to use <a class="reference external" href="https://jupyter.org">Jupyter</a> for CHORDS data insertion and retrieval over HTTP</p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="required-tools">
+<h1>Required tools<a class="headerlink" href="#required-tools" title="Permalink to this headline">#</a></h1>
+<p>You will need the following to complete this tutorial:</p>
+<p><strong>Minimum:</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://python.org">Python 3.8+</a> or higher Python interpreter</p></li>
+<li><p>the <a class="reference external" href="https://pandas.pydata.org">Pandas</a> and <a class="reference external" href="https://matplotlib.org">matplotlib</a> Python libraries or you may install <a class="reference external" href="https://anaconda.com">Anaconda</a> to expedite installation of these and many other useful libraries</p></li>
+<li><p>web browser and internet connection</p></li>
+</ul>
+<p><strong>Recommended:</strong></p>
+<ul class="simple">
+<li><p>minimum requirements, plus:</p></li>
+<li><p><a class="reference external" href="https://jupyter.org">Jupyter</a> notebook server (locally or remotely)</p></li>
+<li><p><a class="reference external" href="https://github.com/jsargiot/restman">Restman</a> (or similar) browser plugin for REST/HTTP testing (Chrome-based version <a class="reference external" href="https://chrome.google.com/webstore/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi">on Chrome store</a> for <strong>all Chrome-based browsers</strong> such as <a class="reference external" href="https://www.chromium.org/getting-involved/download-chromium/">Chromium</a>, <a class="reference external" href="https://brave.com/">Brave</a>, <a class="reference external" href="https://www.opera.com/">Opera</a>, <a class="reference external" href="https://vivaldi.com/">Vivalvi</a> and others)</p>
+<ul>
+<li><p>a similar tool called <a class="reference external" href="https://github.com/RESTEDClient/RESTED">Rested</a> can be found for <a class="reference external" href="https://addons.mozilla.org/en-US/firefox/addon/rested/?utm_source=addons.mozilla.org&amp;utm_medium=referral&amp;utm_content=search">Firefox users</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com">Github</a> account</p></li>
+</ul>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -338,7 +413,7 @@ title="Print to PDF"
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By Keith Maull, Agbeli Ameko, Mike Daniels & Mike Dye<br/>
+    By Keith Maull, Agbeli Ameko, Mike Daniels & Mike Dye; Logo image <a href="https://www.freepik.com/free-vector/infinity-colorful-logo-gradient_30697739.htm#page=3&query=logo%20png%20mobius&position=32&from_view=search&track=ais#position=32&page=3&query=logo%20png%20mobius">by logturnal on Freepik</a><br/>
   
       &copy; Copyright 2023.<br/>
 </p>

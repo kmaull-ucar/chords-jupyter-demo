@@ -50,6 +50,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Wrap Up" href="../wrapup.html" />
@@ -297,12 +299,63 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   CHORDS data manipulation in Python
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connect-to-chords-for-data">
+   1. connect to CHORDS for data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-the-data">
+   2. review the data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#open-the-data-in-python">
+   3. open the data in Python
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-the-average-temperature">
+     What is the Average Temperature?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-the-highest-and-lowest-temperatures">
+     What is the Highest and Lowest Temperatures?
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -314,6 +367,46 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   CHORDS data manipulation in Python
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#connect-to-chords-for-data">
+   1. connect to CHORDS for data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#review-the-data">
+   2. review the data
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#open-the-data-in-python">
+   3. open the data in Python
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-the-average-temperature">
+     What is the Average Temperature?
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#what-is-the-highest-and-lowest-temperatures">
+     What is the Highest and Lowest Temperatures?
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -330,6 +423,436 @@ title="Print to PDF"
 </div>
 </div>
 </div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="connect-to-chords-for-data">
+<h1>1. connect to CHORDS for data<a class="headerlink" href="#connect-to-chords-for-data" title="Permalink to this headline">#</a></h1>
+<p>Opening the api key is critical for data retrieval.  Put your API key and email in a file called <code class="docutils literal notranslate"><span class="pre">api-key.txt</span></code> in a <strong>single line</strong> that looks like this:</p>
+<div class="highlight-csv notranslate"><div class="highlight"><pre><span></span>490rieojfdn8e,youremail@yourdomain.com
+</pre></div>
+</div>
+<p>Notice the comma seperates the key from the email address.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;api-key.txt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">api_key</span><span class="p">,</span> <span class="n">email</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we will use the <a class="reference external" href="https://docs.python-requests.org/en/latest/index.html">Python Requests</a> library to perform an HTTP/GET and store the response in a file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;http://3d.chordsrt.com/api/v1/data/7.csv?start=2023-03-20T00:00&amp;end=2023-03-30T00:00&amp;api_key=</span><span class="si">{</span><span class="n">api_key</span><span class="si">}</span><span class="s2">&amp;email=</span><span class="si">{</span><span class="n">email</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">status_code</span> <span class="o">==</span> <span class="mi">200</span><span class="p">:</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;sample_data.csv&quot;</span><span class="p">,</span> <span class="s2">&quot;w&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fo</span><span class="p">:</span>
+        <span class="n">fo</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;[info] payload saved.&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[info] payload saved.
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>NOTE:</strong> Details about the the CHORDS API calls can be found here:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://3d.chordsrt.com/about/data_urls?instrument_id=7">http://3d.chordsrt.com/about/data_urls?instrument_id=7</a></p></li>
+</ul>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="review-the-data">
+<h1>2. review the data<a class="headerlink" href="#review-the-data" title="Permalink to this headline">#</a></h1>
+<p>Since the output was a CSV file, we can open it right here.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="open-the-data-in-python">
+<h1>3. open the data in Python<a class="headerlink" href="#open-the-data-in-python" title="Permalink to this headline">#</a></h1>
+<p>We will use the <a class="reference external" href="https://pandas.pydata.org/">Pandas library</a> to load the data into a <span class="xref myst">DataFrame</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;sample_data.csv&quot;</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s2">&quot;#&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Time</th>
+      <th>HTU21D_T</th>
+      <th>HTU21D_RH</th>
+      <th>BMP180_SLP</th>
+      <th>BMP180_SP</th>
+      <th>BMP180_T</th>
+      <th>MCP9808</th>
+      <th>windspeed</th>
+      <th>winddirection</th>
+      <th>precipitation</th>
+      <th>SI1145_VIS</th>
+      <th>SI1145_IR</th>
+      <th>SI1145_UV</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2023-03-20T00:00:01Z</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.92</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2023-03-20T00:00:04Z</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1008.96</td>
+      <td>819.8</td>
+      <td>9.4</td>
+      <td>9.7</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>384.0</td>
+      <td>1807.0</td>
+      <td>68.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2023-03-20T00:00:05Z</td>
+      <td>9.6</td>
+      <td>17.2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2023-03-20T00:01:02Z</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>232.7</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2023-03-20T00:01:09Z</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;Time&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>HTU21D_T</th>
+      <th>HTU21D_RH</th>
+      <th>BMP180_SLP</th>
+      <th>BMP180_SP</th>
+      <th>BMP180_T</th>
+      <th>MCP9808</th>
+      <th>windspeed</th>
+      <th>winddirection</th>
+      <th>precipitation</th>
+      <th>SI1145_VIS</th>
+      <th>SI1145_IR</th>
+      <th>SI1145_UV</th>
+    </tr>
+    <tr>
+      <th>Time</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2023-03-20T00:00:01Z</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>7.92</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2023-03-20T00:00:04Z</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1008.96</td>
+      <td>819.8</td>
+      <td>9.4</td>
+      <td>9.7</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>384.0</td>
+      <td>1807.0</td>
+      <td>68.0</td>
+    </tr>
+    <tr>
+      <th>2023-03-20T00:00:05Z</th>
+      <td>9.6</td>
+      <td>17.2</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2023-03-20T00:01:02Z</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>232.7</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2023-03-20T00:01:09Z</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As we can see there are a lot of empty values (NaN).  And a variety of data points.  We are only interested in the non-empty</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;HTU21D_T&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Time
+2023-03-20T00:00:05Z    9.6
+2023-03-20T00:01:11Z    9.5
+2023-03-20T00:02:04Z    9.7
+2023-03-20T00:03:04Z    9.8
+2023-03-20T00:04:07Z    9.8
+                       ... 
+2023-03-29T23:55:04Z    4.7
+2023-03-29T23:56:08Z    4.7
+2023-03-29T23:57:05Z    4.7
+2023-03-29T23:58:05Z    4.7
+2023-03-29T23:59:06Z    4.7
+Name: HTU21D_T, Length: 14233, dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;HTU21D_T&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>You will notice all the temperature data is in C.  We will create a little function to convert it to F like this:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">to_F</span><span class="p">(</span><span class="n">celsius</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">celsius</span> <span class="o">*</span> <span class="mi">9</span><span class="o">/</span><span class="mi">5</span> <span class="o">+</span> <span class="mi">32</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># test</span>
+<span class="n">to_F</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>32.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now we will update the data …</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">to_F</span><span class="p">)</span> <span class="c1"># convert data to F</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Plotting is simple, now that we have all the data we need.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s2">&quot;NCAR Testbed 2</span><span class="se">\n</span><span class="s2">Mar-20 to Mar-30 temperatures (F)&quot;</span><span class="p">,</span> <span class="n">rot</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;AxesSubplot: title={&#39;center&#39;: &#39;NCAR Testbed 2\nMar-20 to Mar-30 temperatures (F)&#39;}, xlabel=&#39;Time&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/chords-get-data-python_23_1.png" src="../_images/chords-get-data-python_23_1.png" />
+</div>
+</div>
+<section id="what-is-the-average-temperature">
+<h2>What is the Average Temperature?<a class="headerlink" href="#what-is-the-average-temperature" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>34.35642801939155
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="what-is-the-highest-and-lowest-temperatures">
+<h2>What is the Highest and Lowest Temperatures?<a class="headerlink" href="#what-is-the-highest-and-lowest-temperatures" title="Permalink to this headline">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">temp</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">temp</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(264.02000000000004, -427.0)
+</pre></div>
+</div>
+</div>
+</div>
+<p>That’s weird?  Looks like the sensor went crazy one day!</p>
+<p>Now you can study the Pandas documentation to learn how to eliminate those outliers!</p>
+<p><span class="math notranslate nohighlight">\(\Xi\)</span></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -380,7 +903,7 @@ title="Print to PDF"
     <div class="footer-content row">
         <footer class="col footer"><p>
   
-    By Keith Maull, Agbeli Ameko, Mike Daniels & Mike Dye<br/>
+    By Keith Maull, Agbeli Ameko, Mike Daniels & Mike Dye; Logo image <a href="https://www.freepik.com/free-vector/infinity-colorful-logo-gradient_30697739.htm#page=3&query=logo%20png%20mobius&position=32&from_view=search&track=ais#position=32&page=3&query=logo%20png%20mobius">by logturnal on Freepik</a><br/>
   
       &copy; Copyright 2023.<br/>
 </p>
